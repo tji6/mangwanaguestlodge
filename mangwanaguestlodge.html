@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Oaklands Apartments</title>
+<title>Mangwana Guest Lodge</title>
 <style>
     * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
 
@@ -152,21 +152,12 @@
 
 <section class="hero">
     <div class="slideshow" aria-hidden="true">
-        <div class="slide" style="background-image: url('IMG_4638.jpeg')"></div>
-        <div class="slide" style="background-image: url('IMG_4769.jpeg')"></div>
-        <div class="slide" style="background-image: url('IMG_4413.jpeg')"></div>
-        <div class="slide" style="background-image: url('IMG_4469.jpeg')"></div>
-        <div class="slide" style="background-image: url('IMG_44385.jpeg')"></div>
-        <div class="slide" style="background-image: url('IMG_4402.jpeg')"></div>
-        <div class="slide" style="background-image: url('IMG_4409.jpeg')"></div>
-        <div class="slide" style="background-image: url('IMG_4369.jpeg')"></div>
-        <div class="slide" style="background-image: url('IMG_4415.jpeg')"></div>
-        <div class="slide" style="background-image: url('IMG_4360.jpeg')"></div>
-        <div class="slide" style="background-image: url('IMG_4425.jpeg')"></div>
-        <div class="slide" style="background-image: url('IMG_4432.jpeg')"></div>
+        <div class="slide" style="background-image: url('IMG_4863.jpeg')"></div>
+        <div class="slide" style="background-image: url('IMG_4885.jpeg')"></div>
+        
     </div>
-    <h1>Oaklands Apartments</h1>
-    <p>Your home away from home</p>
+    <h1>Magwana Guest Lodge</h1>
+    <p>You can't buy happiness but you can book a stay here,and that's pretty close</p>
     <a href="rooms.html" class="btn btn-gold" style="margin-top: 20px; z-index: 2;">View All Rooms</a>
     <button onclick="openBooking('Standard')" class="btn btn-gold" style="margin-top: 20px; z-index: 2;">Book Your Stay</button>
 </section>
@@ -175,17 +166,10 @@
     <h2>Our Accommodations</h2>
     <div class="room-grid">
         <div class="room-card">
-            <img src="IMG_4369.jpeg" alt="Standard Room">
-            <h3>Standard Room</h3>
-            <p class="price-tag">Day: $30 | Night: $40</p>
-            <button class="btn" onclick="openBooking('Standard')">Book Now</button>
-        </div>
-
-        <div class="room-card exclusive">
-            <img src="IMG_4414.jpeg" alt="Exclusive Suite">
-            <h3>Exclusive Suite</h3>
-            <p class="price-tag">Flat Rate: $60 (Day & Night)</p>
-            <button class="btn btn-gold" onclick="openBooking('Exclusive')">Premium Booking</button>
+            <img src="IMG_4873.jpeg" alt="Our Rooms">
+            <h3>Our Rooms</h3>
+            <p class="price-tag">$15 per day / $25 per night</p>
+            
         </div>
     </div>
 </section>
@@ -196,32 +180,7 @@
     <a href="https://maps.app.goo.gl/78QL51jeiGHBoA2C6?g_st=ic" target="_blank" class="btn btn-gold" style="display: block; margin: 20px auto; width: fit-content;">View on Google Maps</a>
 </section>
 
-<div class="modal-overlay" id="bookingModal">
-    <div class="modal-content">
-        <span class="close-btn" onclick="closeBooking()">&times;</span>
-        <h3>Make a Reservation</h3>
-        <p>Complete the details below to book your stay.</p>
-        
-        <form action="book.php" method="POST">
-            <label>Full Name</label>
-            <input type="text" name="guest_name" required placeholder="John Doe">
-            
-            <label>Email Address</label>
-            <input type="email" name="email" required placeholder="john@example.com">
-            
-            <label>Room Selection</label>
-            <select name="room_type" id="roomSelect">
-                <option value="Standard">Standard Room</option>
-                <option value="Exclusive">Exclusive Suite</option>
-            </select>
-            
-            <label>Check-in Date</label>
-            <input type="date" name="booking_date" required>
-            
-            <button type="submit" class="submit-btn">Confirm My Booking</button>
-        </form>
-    </div>
-</div>
+
 
 <div class="image-modal" id="imageModal">
     <span class="close" onclick="closeImageModal()">&times;</span>
@@ -230,8 +189,8 @@
 
 <footer class="contact">
     <h3>Contact Us</h3>
-    <p>Email: info@oaklandsapartments.com | Phone: 0242308235</p>
-    <p>Address: 10 Browning Dr, Harare</p>
+    <p>Email: mangwanaguestlodge@gmail.com | Phone: 0242308235</p>
+    <p>Address: 10 Brownin, Harare</p>
 </footer>
 
 <script>
@@ -239,9 +198,7 @@
     (function() {
         const slideshow = document.querySelector('.slideshow');
         const imageSrcs = [
-            'IMG_4638.jpeg','IMG_4413.jpeg','IMG_4469.jpeg','IMG_44385.jpeg',
-            'IMG_4402.jpeg','IMG_4409.jpeg','IMG_4369.jpeg','IMG_4415.jpeg',
-            'IMG_4360.jpeg','IMG_4425.jpeg','IMG_4432.jpeg','IMG_4769.jpeg'
+            'IMG_4885.jpeg','IMG_4863.jpeg'
         ];
 
         // Clear any existing slides and create placeholders
@@ -334,4 +291,5 @@
 </script>
 
 </body>
+
 </html>
