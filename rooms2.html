@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Our Rooms - Oaklands Apartments</title>
+<style>
+    * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
+
+    body { background: #f4f4f4; }
+
+    header { background: #2c3e50; color: white; padding: 20px; text-align: center; }
+    header h1 { font-size: 2.5rem; }
+    header p { font-size: 1.2rem; }
+
+    .container { padding: 50px 10%; text-align: center; }
+
+    .room-section { margin-bottom: 50px; }
+    .room-section h2 { font-size: 2rem; margin-bottom: 20px; color: #2c3e50; }
+
+    .room-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px; margin-top: 30px; }
+
+    .room-card { border: 1px solid #ddd; border-radius: 10px; overflow: hidden; background: white; transition: 0.3s; }
+    .room-card:hover { transform: translateY(-5px); box-shadow: 0 10px 20px rgba(0,0,0,0.1); }
+
+    .room-card img { width: 100%; height: 200px; object-fit: cover; }
+
+    .room-details { padding: 20px; }
+    .room-details h3 { font-size: 1.5rem; margin-bottom: 10px; }
+    .price-tag { color: #d4af37; font-weight: bold; font-size: 1.2rem; margin: 10px 0; }
+    .description { margin-bottom: 15px; color: #555; }
+
+    .btn { padding: 10px 20px; cursor: pointer; border-radius: 5px; border: 1px solid #2c3e50; transition: 0.3s; background: white; text-decoration: none; display: inline-block; margin: 10px; }
+    .btn:hover { background: #2c3e50; color: white; }
+    .btn-gold { background: #d4af37; color: white; border: none; }
+    .btn-gold:hover { background: #b8962d; }
+
+    .carousel-container { position: relative; max-width: 600px; margin: 0 auto; }
+    .carousel-container img { width: 100%; height: 400px; object-fit: cover; border-radius: 10px; cursor: pointer; }
+    .prev, .next { position: absolute; top: 50%; transform: translateY(-50%); background: rgba(0,0,0,0.5); color: white; border: none; padding: 10px; cursor: pointer; font-size: 24px; }
+    .prev { left: 10px; }
+    .next { right: 10px; }
+    .prev:hover, .next:hover { background: rgba(0,0,0,0.8); }
+    .modal {
+        display: none;
+        position: fixed;
+        z-index: 1000;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0,0,0,0.9);
+        justify-content: center;
+        align-items: center;
+    }
+    .modal img {
+        max-width: 90%;
+        max-height: 90%;
+        object-fit: contain;
+    }
+    .close {
+        position: absolute;
+        top: 20px;
+        right: 30px;
+        color: white;
+        font-size: 40px;
+        cursor: pointer;
+    }
+    footer { background: #2c3e50; color: white; padding: 20px; text-align: center; }
+</style>
+</head>
+<body>
+
+<header>
+    <h1>Our Rooms</h1>
+    <p>Discover the perfect accommodation for your stay</p>
+    <a href="index.html" class="btn btn-gold">Back to Home</a>
+</header>
+
+<section class="container">
+    <div id="selection">
+        <h2>Choose Your Room Type</h2>
+        <button class="btn btn-gold" onclick="showCarousel('standard')">Explore Standard Rooms</button>
+        <button class="btn btn-gold" onclick="showCarousel('exclusive')">Explore Exclusive Suites</button>
+    </div>
+
+    <div id="carousel" style="display: none;">
+        <button class="btn" onclick="backToSelection()">Back</button>
+        <div class="carousel-container">
+            <button class="prev" onclick="prevImage()">&#10094;</button>
+            <img id="carousel-image" src="" alt="Room Image" onclick="showFullImage()">
+            <button class="next" onclick="nextImage()">&#10095;</button>
+        </div>
+        <p id="room-price"></p>
+        <a href="index.html" class="btn btn-gold">Book Now</a>
+    </div>
+
+    <div id="imageModal" class="modal">
+        <span class="close" onclick="closeModal()">&times;</span>
+        <img id="fullImage" src="" alt="Full Room Image">
+    </div>
+</section>
+
+<footer>
+    <p>&copy; 2023 Oaklands Apartments. All rights reserved.</p>
+</footer>
+
+<script>
+    const standardImages = ['IMG_4369.jpeg', 'IMG_4385.jpeg'];
+    const exclusiveImages = ['IMG_4415.jpeg', 'IMG_4385.jpeg', 'IMG_4388.jpeg', 'IMG_4402.jpeg', 'IMG_4409.jpeg'];
+
+    let currentCategory = '';
+    let currentIndex = 0;
+
+    function showCarousel(category) {
+        currentCategory = category;
+        currentIndex = 0;
+        const images = category === 'standard' ? standardImages : exclusiveImages;
+        document.getElementById('carousel-image').src = images[currentIndex];
+        document.getElementById('room-price').textContent = category === 'standard' ? '$30 per day / $40 per night' : '$60 per day and night';
+        document.getElementById('selection').style.display = 'none';
+        document.getElementById('carousel').style.display = 'block';
+    }
+
+    function backToSelection() {
+        document.getElementById('carousel').style.display = 'none';
+        document.getElementById('selection').style.display = 'block';
+    }
+
+    function nextImage() {
+        const images = currentCategory === 'standard' ? standardImages : exclusiveImages;
+        currentIndex = (currentIndex + 1) % images.length;
+        document.getElementById('carousel-image').src = images[currentIndex];
+    }
+
+    function prevImage() {
+        const images = currentCategory === 'standard' ? standardImages : exclusiveImages;
+        currentIndex = (currentIndex - 1 + images.length) % images.length;
+        document.getElementById('carousel-image').src = images[currentIndex];
+    }
+
+    function showFullImage() {
+        const images = currentCategory === 'standard' ? standardImages : exclusiveImages;
+        document.getElementById('fullImage').src = images[currentIndex];
+        document.getElementById('imageModal').style.display = 'flex';
+    }
+
+    function closeModal() {
+        document.getElementById('imageModal').style.display = 'none';
+    }
+</script>
+
+</body>
+</html>
