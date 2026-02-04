@@ -74,25 +74,24 @@
 <header>
     <h1>Our Rooms</h1>
     <p>Discover the perfect accommodation for your stay</p>
-    <a href="index.html" class="btn btn-gold">Back to Home</a>
+    <a href="mangwanaguestlodge.html" class="btn btn-gold">Back to Home</a>
 </header>
 
 <section class="container">
     <div id="selection">
         <h2>Choose Your Room Type</h2>
-        <button class="btn btn-gold" onclick="showCarousel('standard')">Explore Standard Rooms</button>
-        <button class="btn btn-gold" onclick="showCarousel('exclusive')">Explore Exclusive Suites</button>
+        <button class="btn btn-gold" onclick="showCarousel()">Explore Rooms</button>
     </div>
 
     <div id="carousel" style="display: none;">
         <button class="btn" onclick="backToSelection()">Back</button>
         <div class="carousel-container">
-            <button class="prev" onclick="prevImage()">&#10094;</button>
+            <button class="prev" onclick="prevImage()">&lt;</button>
             <img id="carousel-image" src="" alt="Room Image" onclick="showFullImage()">
-            <button class="next" onclick="nextImage()">&#10095;</button>
+            <button class="next" onclick="nextImage()">&gt;</button>
         </div>
         <p id="room-price"></p>
-        <a href="index.html" class="btn btn-gold">Book Now</a>
+        <div id="amenities"></div>
     </div>
 
     <div id="imageModal" class="modal">
@@ -102,22 +101,19 @@
 </section>
 
 <footer>
-    <p>&copy; 2023 Oaklands Apartments. All rights reserved.</p>
+    <p>&copy; 2023 Mangwana Guest Lodge. All rights reserved.</p>
 </footer>
 
 <script>
-    const standardImages = ['IMG_4369.jpeg', 'IMG_4385.jpeg'];
-    const exclusiveImages = ['IMG_4415.jpeg', 'IMG_4385.jpeg', 'IMG_4388.jpeg', 'IMG_4402.jpeg', 'IMG_4409.jpeg'];
+    const roomImages = ['IMG_4873.jpeg', 'IMG_4877.jpeg', 'IMG_4879.jpeg', 'IMG_4872.jpeg','IMG_4865.jpeg];
 
-    let currentCategory = '';
     let currentIndex = 0;
 
-    function showCarousel(category) {
-        currentCategory = category;
+    function showCarousel() {
         currentIndex = 0;
-        const images = category === 'standard' ? standardImages : exclusiveImages;
-        document.getElementById('carousel-image').src = images[currentIndex];
-        document.getElementById('room-price').textContent = category === 'standard' ? '$30 per day / $40 per night' : '$60 per day and night';
+        document.getElementById('carousel-image').src = roomImages[currentIndex];
+        const amenities = ['DSTV ✓', 'Hot and cold water ✓', 'Wifi ✓', 'Room cleaning ✓', 'Self catering ✓'];
+        document.getElementById('amenities').innerHTML = '<h3>Amenities</h3><ul>' + amenities.map(item => '<li>' + item + '</li>').join('') + '</ul>';
         document.getElementById('selection').style.display = 'none';
         document.getElementById('carousel').style.display = 'block';
     }
@@ -128,20 +124,17 @@
     }
 
     function nextImage() {
-        const images = currentCategory === 'standard' ? standardImages : exclusiveImages;
-        currentIndex = (currentIndex + 1) % images.length;
-        document.getElementById('carousel-image').src = images[currentIndex];
+        currentIndex = (currentIndex + 1) % roomImages.length;
+        document.getElementById('carousel-image').src = roomImages[currentIndex];
     }
 
     function prevImage() {
-        const images = currentCategory === 'standard' ? standardImages : exclusiveImages;
-        currentIndex = (currentIndex - 1 + images.length) % images.length;
-        document.getElementById('carousel-image').src = images[currentIndex];
+        currentIndex = (currentIndex - 1 + roomImages.length) % roomImages.length;
+        document.getElementById('carousel-image').src = roomImages[currentIndex];
     }
 
     function showFullImage() {
-        const images = currentCategory === 'standard' ? standardImages : exclusiveImages;
-        document.getElementById('fullImage').src = images[currentIndex];
+        document.getElementById('fullImage').src = roomImages[currentIndex];
         document.getElementById('imageModal').style.display = 'flex';
     }
 
@@ -149,6 +142,6 @@
         document.getElementById('imageModal').style.display = 'none';
     }
 </script>
-
 </body>
+
 </html>
